@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerBedLeaveEvent;
 
 public class Handler implements Listener 
 {	
-	public int PlayerSpleepCount = 0;
+	public double PlayerSpleepCount = 0;
 	
 	public Handler() 
 	{
@@ -23,9 +23,10 @@ public class Handler implements Listener
 		Server server = player.getServer();
 		int coutPlayers = server.getOnlinePlayers().size();
 		
-		PlayerSpleepCount++;
-		float percent = PlayerSpleepCount / coutPlayers * 100;
-		player.sendMessage("Сейчас спят: " + PlayerSpleepCount + " "+ "from" + " "+ coutPlayers);
+		PlayerSpleepCount+=1;
+		double percent = (PlayerSpleepCount / coutPlayers) * 100;
+		
+		player.sendMessage("Сейчас спят: " + (int)PlayerSpleepCount + " "+ "из" + " "+ coutPlayers);
 		if(percent >= 50) 
 		{
 			player.sendMessage("Да прибудет свет!");
@@ -37,7 +38,7 @@ public class Handler implements Listener
 	public void NotSpleeping(PlayerBedLeaveEvent e) 
 	{
 		if(PlayerSpleepCount == 0) return;
-		PlayerSpleepCount--;
+		PlayerSpleepCount-=1;
 	}
 	
 	
