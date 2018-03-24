@@ -21,14 +21,14 @@ public class Handler implements Listener
 	{
 		Player player = e.getPlayer();
 		Server server = player.getServer();
-		int coutPlayers=server.getMaxPlayers();
+		int coutPlayers = server.getOnlinePlayers().size();
 		
 		PlayerSpleepCount++;
 		float percent = PlayerSpleepCount / coutPlayers * 100;
-		player.sendMessage("Sleep " + PlayerSpleepCount + " "+ "from" + " "+ coutPlayers);
+		player.sendMessage("Сейчас спят: " + PlayerSpleepCount + " "+ "from" + " "+ coutPlayers);
 		if(percent >= 50) 
 		{
-			player.sendMessage("Let there be light!");
+			player.sendMessage("Да прибудет свет!");
 			server.dispatchCommand(server.getConsoleSender(),"time set 0");
 		}
 	}
